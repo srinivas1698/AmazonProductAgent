@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from openai import OpenAI
 import numpy as np
 
