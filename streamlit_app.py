@@ -49,7 +49,7 @@ with st.form('my_form'):
 
     if submitted and openai_api_key.startswith('sk-'):
         question = st.session_state.question
-        question_vector = get_embedding(question)
+        question_vector = get_embedding(question, openai_api_key)
         # Access the API keys
         if category == 'Office Accessories':
             pinecone_api_key = os.getenv('Office_PINECONE_API_KEY')
@@ -117,7 +117,7 @@ with st.form('my_form'):
         formatted_messages = products_prompt_template.format_messages(context=context, question=question)
         
         # Initialize the chat model
-        chat_model = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+        chat_model = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0, openai_api_key = openai_api_key)
         output_parser = StrOutputParser()
         # Call the chat model with the formatted messages
         products_chain = products_prompt_template | chat_model | output_parser

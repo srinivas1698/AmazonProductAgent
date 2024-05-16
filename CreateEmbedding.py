@@ -4,16 +4,12 @@ import numpy as np
 import os
 
 
-# Load the environment variables from .env file
-load_dotenv()
-
-# Access the API keys
-pinecone_api_key = os.getenv('PINECONE_API_KEY')
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
 
 
-openai_client = OpenAI(api_key=openai_api_key)
+
+
+
 
 
 
@@ -30,8 +26,9 @@ def pad_vectors(vector, target_length=3072):
     # Append the padded vector to the list
     return padded_vector
 
-def get_embedding(text_to_embed):
+def get_embedding(text_to_embed, openai_api_key):
     # Embed a line of text
+    openai_client = OpenAI(api_key=openai_api_key)
     response = openai_client.embeddings.create(
     	model= "text-embedding-3-large",
     	input=[text_to_embed]
