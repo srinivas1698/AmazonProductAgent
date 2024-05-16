@@ -1,6 +1,5 @@
 import streamlit as st
 from langchain.llms import OpenAI
-import dotenv
 from langchain_openai import ChatOpenAI
 from langchain.schema.messages import HumanMessage, SystemMessage
 from Prompts import products_template_str
@@ -14,7 +13,6 @@ from langchain.prompts import (
     ChatPromptTemplate,
 )
 from langchain_core.output_parsers import StrOutputParser
-import os
 
 # Load the environment variables from .env file
 # dotenv.load_dotenv()
