@@ -17,7 +17,7 @@ from langchain_core.output_parsers import StrOutputParser
 import os
 
 # Load the environment variables from .env file
-dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 
 
@@ -52,8 +52,7 @@ with st.form('my_form'):
         question_vector = get_embedding(question, openai_api_key)
         # Access the API keys
         if category == 'Office Accessories':
-            pinecone_api_key = os.getenv('Office_PINECONE_API_KEY')
-            pc = Pinecone(api_key=pinecone_api_key)
+            pc = Pinecone(api_key=st.secrets['Pine_Cone_API'])
             pinecone_client = pc.Index("amazon-fashion-products")
             results = pinecone_client.query(
                 vector=question_vector,
@@ -68,8 +67,7 @@ with st.form('my_form'):
                 }
             )
         else:
-            pinecone_api_key = os.getenv('App_PINECONE_API_KEY')
-            pc = Pinecone(api_key=pinecone_api_key)
+            pc = Pinecone(api_key=st.secrets['Pine_Cone_API'])
             pinecone_client = pc.Index("amazon-appliances")
             results = pinecone_client.query(
                 vector=question_vector,
