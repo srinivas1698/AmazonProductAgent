@@ -50,7 +50,7 @@ with st.form('my_form'):
         question_vector = get_embedding(question, openai_api_key)
         # Access the API keys
         if category == 'Office Accessories':
-            pc = Pinecone(api_key=st.secrets['Pine_Cone_API'])
+            pc = Pinecone(api_key=st.secrets['Office_Pine_Cone_API'])
             pinecone_client = pc.Index("amazon-fashion-products")
             results = pinecone_client.query(
                 vector=question_vector,
@@ -65,7 +65,7 @@ with st.form('my_form'):
                 }
             )
         else:
-            pc = Pinecone(api_key=st.secrets['Pine_Cone_API'])
+            pc = Pinecone(api_key=st.secrets['App_Pine_Cone_API'])
             pinecone_client = pc.Index("amazon-appliances")
             results = pinecone_client.query(
                 vector=question_vector,
