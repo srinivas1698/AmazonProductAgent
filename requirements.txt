@@ -1,0 +1,9 @@
+streamlit
+langchain
+python-dotenv
+openai
+pinecone-client
+langchain_openai
+dotenv
+numpy
+os
